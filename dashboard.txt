@@ -1,0 +1,167 @@
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
+import reaarrange from '../assests/nav/rearrange.svg'
+import titles from '../assests/nav/titles.svg'
+import match from '../assests/nav/match.svg'
+import maths from '../assests/nav/maths.svg'
+import puzzle from '../assests/nav/puzzle.svg'
+import graph from '../assests/nav/graph.svg'
+import add from '../assests/nav/add.svg'
+import forword from '../assests/nav/forword.svg'
+import backword from '../assests/nav/backword.svg'
+import drag from '../assests/nav/drag.svg'
+import { background, color, Flex, Spacer } from '@chakra-ui/react'
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
+import {
+  Box, Button, Input, NumberInput, NumberInputField, NumberInputStepper, NumberDecrementStepper, NumberIncrementStepper,
+  Text, SimpleGrid, Select, useToast, Container, Center, Divider, Stack
+} from "@chakra-ui/react";
+import { DownloadIcon } from '@chakra-ui/icons'
+
+
+const Dashboard = () => {
+  const history = useNavigate()
+  const [logout, setLogout] = useState(false)
+
+  useEffect(() => {
+    if (!localStorage.getItem('auth')) history('/')
+  }, [logout])
+
+  const logoutHandler = e => {
+    e.preventDefault();
+    localStorage.removeItem('auth')
+    localStorage.removeItem('data')
+    setLogout(true)
+  }
+  return (
+    <div className='dashboard'>
+      <div className='logout'>
+        <h2 className='logo'>LOGO</h2>
+        <button className='logout-button' onClick={logoutHandler}> Log Out</button>
+      </div>
+      <Flex flexDir='row'>
+        {/* nav */}
+        <Flex flexDir='column' w='400px' h='1000px' >
+          <Flex flexDir='row'>
+            {/* nav list,icon */}
+            <Flex w='400px' h='1000px' bg='#6853C2' >
+              <Tabs display='flex' flexDir='row' variant='unstyled' color='#4328B7'>
+                <TabList display='flex' flexDir='column' alignItems='center' >
+                  <Tab _selected={{background:'#4328B7',borderLeft:'7px solid #ffffff',borderRadius:'5px',w:'110px'}} display='flex' flexDir='column' alignItems='center' marginTop='20px'><img src={reaarrange} height={50} width={50} alt="reaarrange"/><Text color='#ffffff' marginTop='13px'>Rearrange</Text></Tab>
+                  <Tab _selected={{background:'#4328B7',borderLeft:'7px solid #ffffff',borderRadius:'5px',w:'110px'}} display='flex' flexDir='column' alignItems='center' marginTop='20px'><img src={titles} height={50} width={50} alt="titles" /><Text color='#ffffff'  marginTop='13px'>Titles</Text></Tab>
+                  <Tab _selected={{background:'#4328B7',borderLeft:'7px solid #ffffff',borderRadius:'5px',w:'110px'}} display='flex' flexDir='column' alignItems='center' marginTop='20px'><img src={match} height={50} width={50} alt="match" /><Text color='#ffffff'  marginTop='13px'>Match</Text></Tab>
+                  <Tab _selected={{background:'#4328B7',borderLeft:'7px solid #ffffff',borderRadius:'5px',w:'110px'}} display='flex' flexDir='column' alignItems='center' marginTop='20px'><img src={maths} height={50} width={50} alt="maths" /><Text color='#ffffff'  marginTop='13px'>Maths</Text></Tab>
+                  <Tab _selected={{background:'#4328B7',borderLeft:'7px solid #ffffff',borderRadius:'5px',w:'110px'}} display='flex' flexDir='column' alignItems='center' marginTop='20px'><img src={puzzle} height={50} width={50} alt="puzzle"/><Text color='#ffffff'  marginTop='13px'>Puzzle</Text></Tab>
+                  <Tab _selected={{background:'#4328B7',borderLeft:'7px solid #ffffff',borderRadius:'5px',w:'110px'}} display='flex' flexDir='column' alignItems='center' marginTop='20px'><img src={graph} height={50} width={50} alt="graph" /><Text color='#ffffff'  marginTop='13px'>Graph</Text></Tab>
+                  <Tab _selected={{background:'#4328B7',borderLeft:'7px solid #ffffff',borderRadius:'5px',w:'110px'}} display='flex' flexDir='column' alignItems='center' marginTop='20px'><img src={add} height={50} width={50} alt="add" /><Text color='#ffffff'  marginTop='13px'>Add</Text></Tab>
+                </TabList>
+                <TabPanels p='10px' w='300px' h='1000px' bg='#ffffff'>
+                  <TabPanel>
+                  <Text color='#232323' fontWeight='500' fontSize='20px'>Rearrange</Text>
+                  <Text w='250px' color='#232323' marginTop='9px' fontWeight='400' fontSize='14px' opacity='0.5' borderBottom='0.5px solid #8c8c8c'paddingBottom='10px'>Drag & drop items in the artboard</Text>
+                  </TabPanel>
+                  <TabPanel>
+                  <Text color='#232323' fontWeight='500' fontSize='20px'>Titles</Text>
+                  <Text w='250px' color='#232323' marginTop='9px' fontWeight='400' fontSize='14px' opacity='0.5' borderBottom='0.5px solid #8c8c8c'paddingBottom='10px'>Drag & drop items in the artboard</Text>
+                  </TabPanel>
+                  <TabPanel>
+                  <Text color='#232323' fontWeight='500' fontSize='20px'>Match</Text>
+                  <Text w='250px' color='#232323' marginTop='9px' fontWeight='400' fontSize='14px' opacity='0.5' borderBottom='0.5px solid #8c8c8c'paddingBottom='10px'>Drag & drop items in the artboard</Text>
+                  </TabPanel>
+                  <TabPanel>
+                  <Text color='#232323' fontWeight='500' fontSize='20px'>Maths</Text>
+                  <Text w='250px' color='#232323' marginTop='9px' fontWeight='400' fontSize='14px' opacity='0.5' borderBottom='0.5px solid #8c8c8c'paddingBottom='10px'>Drag & drop items in the artboard</Text>
+                  </TabPanel>
+                  <TabPanel>
+                  <Text color='#232323' fontWeight='500' fontSize='20px'>Puzzle</Text>
+                  <Text w='250px' color='#232323' marginTop='9px' fontWeight='400' fontSize='14px' opacity='0.5' borderBottom='0.5px solid #8c8c8c'paddingBottom='10px'>Drag & drop items in the artboard</Text>
+                  </TabPanel>
+                  <TabPanel>
+                  <Text color='#232323' fontWeight='500' fontSize='20px'>Graph</Text>
+                  <Text w='250px' color='#232323' marginTop='9px' fontWeight='400' fontSize='14px' opacity='0.5' borderBottom='0.5px solid #8c8c8c'paddingBottom='10px'>Drag & drop items in the artboard</Text>
+                  </TabPanel>
+                  <TabPanel>
+                  <Box display='flex' flexDir='column'>
+                    <label style={{ marginBottom: '15px', fontWeight: 'bold' }}>Upload new image</label>
+                    <Input type='file' border='off' />
+                    <Button p='15px' backgroundColor='#6853C2' color='#FFFFFF' _hover='off'  marginLeft="10px">Upload</Button>
+                    <br/>
+                    <hr />
+                  </Box>
+                  </TabPanel>
+                </TabPanels>
+              </Tabs>
+
+            </Flex>
+          </Flex>
+        </Flex>
+        {/* drag align design */}
+        <Flex flexDir='column' w='810px' h='1000px' >
+          <Flex w='900px' h='116px' bg='#FFFFFF' borderLeft='20px solid #D1D1D1' >
+            {/* drag and font */}
+            <Box h='39px'>
+              <Button p='20px' w='200px' bg='#FFFFFF' fontWeight='400' fontSize='16px' border="0.5px solid #808080" _hover='off' margin='10px'><img src={drag} height='16px' width='16px' style={{marginLeft:'-13px'}} />&nbsp;&nbsp; Drag to add Text</Button>
+              <Select p='10px' variant='flushed' placeholder='Times new Roman' w='158' marginTop='-7px' >
+                <option value='option2'>Arial</option>
+                <option value='option3'>Algerian</option>
+              </Select>
+            </Box>
+            {/* size */}
+            <Box h='39px'>
+              <Select p='10px' variant='flushed' placeholder='24' w='120' marginTop='55px'>
+                <option value='option2'>16</option>
+                <option value='option3'>18</option>
+              </Select>
+            </Box>
+            {/* color */}
+            <Box h='39px' p='10px' marginTop='23px'>
+              <label style={{ fontSize: '29px', fontWeight: 'bold', color: '#6853C2', marginLeft: '14px' }}>T</label><br />
+              <input type='color' value='#6853C2'/>
+            </Box>
+            {/* vertical line */}
+            <Box borderLeft='1px solid #D1D1D1' h="90px" marginTop='14px' marginLeft='10px'></Box>
+            {/* forward button */}
+            <Box p='15px' >
+              <h5 style={{ opacity: '0.5', fontWeight: 'bold' }}>Align</h5>
+              <Button p={'20px'} _hover='off' marginTop={'10px'} bg='#FFFFFF' ><img src={forword} /></Button>
+              <h1>Forward</h1>
+            </Box>
+            {/* backward button */}
+            <Box p='15px'>
+              <Button p={'20px'} _hover='off' marginTop={'28px'} bg='#FFFFFF' ><img src={backword} /></Button>
+              <h1> Backward</h1>
+            </Box>
+            <Box borderLeft='1px solid #D1D1D1' h="90px" marginTop='14px' marginLeft='10px'></Box>
+          </Flex>
+          {/* Tool bar & editor */}
+          <Flex w='810px' h='934px' bg='#D1D1D1' >
+            <Box p='20px' w='950px' h='884px' border='20px solid #D1D1D1' bg='#FFFFFF' >
+              
+            </Box>
+          </Flex>
+        </Flex>
+        {/* edit image */}
+        <Flex flexDir='column' w='324px' h='1000px'>
+          {/* pdf generate */}
+          <Flex w='700px' h='116px' bg='#FFFFFF'>
+            <Box p='15px'  display='flex' flexDir='row'>
+            <Box p='10px' >
+                <Button p='20px'  type="submit" border='1px solid #6853C2' color='#6853C2' _hover='off' fontWeight='light'>Save & create new</Button>
+              </Box>
+              <Box p='10px'>
+                <Button p='20px' leftIcon={<DownloadIcon />} type="submit" backgroundColor='#6853C2' color='#FFFFFF' _hover='off' fontWeight='light'>Download</Button>
+              </Box>
+            </Box>
+          </Flex>
+          {/* beaker ,clock,weighing */}
+     <Flex>
+      <Text marginLeft='10px' w='800px' fontWeight='500' fontSize='20px' borderBottom='0.5px solid #8c8c8c'>Edit Content</Text>
+     </Flex>
+        </Flex>
+      </Flex>
+
+    </div>
+  )
+}
+
+export default Dashboard
